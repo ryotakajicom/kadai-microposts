@@ -15,6 +15,7 @@ class MicropostsController < ApplicationController
   end
 
   def destroy
+    Favorite.destroy_all(micropost_id: @micropost.id) #該当するpostのお気に入り情報も削除
     @micropost.destroy
     flash[:success] = 'メッセージを削除しました。'
     redirect_back(fallback_location: root_path)
